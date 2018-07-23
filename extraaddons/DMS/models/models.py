@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# class my_module(models.Model):
-#     _name = 'my_module.my_module'
+from odoo import models, fields, api
+
+# class DMS(models.Model):
+#     _name = 'DMS.DMS'
 
 #     name = fields.Char()
 #     value = fields.Integer()
@@ -11,3 +13,9 @@
 #     @api.depends('value')
 #     def _value_pc(self):
 #         self.value2 = float(self.value) / 100
+
+from odoo import models, fields, api
+class MyModel(models.Model):
+    _inherit = 'sale.order'
+
+    vehicale_id = fields.Char('vehicale number')
