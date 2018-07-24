@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_calorie_module_product_calorie_module,product_calorie_module.product_calorie_module,model_product_calorie_module_product_calorie_module,,1,0,0,0
