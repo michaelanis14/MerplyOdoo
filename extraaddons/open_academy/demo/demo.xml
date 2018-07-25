@@ -12,7 +12,7 @@
         </record>
 
         <record id="course3" model="open_academy.open_academy">
-            <field name="name">Course </field>
+            <field name="name">Course 3</field>
             <field name="description">Python Course</field>
         </record>
         <!--   <record id="object1" model="open_academy.open_academy"> -->
