@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="awbinvoices.list">
+      <field name="name">AWB Invoices </field>
+      <field name="model">awbinvoices.awbinvoices</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field InvoceName="Invoice Name"/>
+          <field Chipper="Chipper"/>
+          <field Consignee="Consignee"/>
+        </tree>
+      </field>
+    </record>
+
+-->
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="awbinvoices.action_window">
+      <field name="name">awbinvoices window</field>
+      <field name="res_model">awbinvoices.awbinvoices</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="awbinvoices.action_server">
+      <field name="name">awbinvoices server</field>
+      <field name="model_id" ref="model_awbinvoices_awbinvoices"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="awbinvoices" id="awbinvoices.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="awbinvoices.menu_1" parent="awbinvoices.menu_root"/>
+    <menuitem name="Menu 2" id="awbinvoices.menu_2" parent="awbinvoices.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="awbinvoices.menu_1_list" parent="awbinvoices.menu_1"
+              action="awbinvoices.action_window"/>
+    <menuitem name="Server to list" id="awbinvoices" parent="awbinvoices.menu_2"
+              action="awbinvoices.action_server"/>
+    -->
+  </data>
+</odoo>
