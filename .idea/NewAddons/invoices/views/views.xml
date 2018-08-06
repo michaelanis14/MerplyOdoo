@@ -1,0 +1,63 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="invoices.list">
+      <field name="name">Invoices list</field>
+      <field name="model">account_invoicing</field>
+      <field name="inherit_id" ref="account.invoice_form"/>
+      <field name="arch" type="xml">
+        <field name="payment_term_id" position="after">
+
+          <field Chipper="Customer"/>
+          <field Consignee="Consignee"/>
+          <field Intermideate_consignee="Intermideate Consignee"/>
+
+        </field>
+
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="invoices.action_window">
+      <field name="name">Invoices window</field>
+      <field name="res_model">invoices.invoices</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="invoices.action_server">
+      <field name="name">Invoices server</field>
+      <field name="model_id" ref="model_invoices_invoices"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="Invoices" id="invoices.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="invoices.menu_1" parent="invoices.menu_root"/>
+    <menuitem name="Menu 2" id="invoices.menu_2" parent="invoices.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="invoices.menu_1_list" parent="invoices.menu_1"
+              action="invoices.action_window"/>
+    <menuitem name="Server to list" id="invoices" parent="invoices.menu_2"
+              action="invoices.action_server"/>
+    -->
+  </data>
+</odoo>
