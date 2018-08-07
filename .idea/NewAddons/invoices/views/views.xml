@@ -2,23 +2,42 @@
   <data>
 
     <record model="ir.ui.view" id="invoices.list">
-      <field name="name">Invoices list</field>
-      <field name="model">account_invoicing</field>
+
+      <field name="model">account.invoice</field>
       <field name="inherit_id" ref="account.invoice_form"/>
       <field name="arch" type="xml">
-        <field name="payment_term_id" position="after">
 
-          <field Chipper="Customer"/>
-          <field Consignee="Consignee"/>
-          <field Intermideate_consignee="Intermideate Consignee"/>
+        <field name="date_invoice" position="before">
+
+          <field name="Consignee"/>
+          <field name="Intermediate_consignee"/>
 
         </field>
+
+
+        <field name="payment_term_id" position="after">
+
+          <field name="Exporting_carrier"/>
+          <field name="Exporting_date"/>
+
+        </field>
+
+
+
 
       </field>
     </record>
 
+<!--  <xpath expr="//form/sheet/notebook/" position="inside">
+          <page string="Product">
+            <field name="package"/>
+          </page>
+        </xpath>
 
-    <!-- actions opening views on models -->
+        <xpath expr="//field[@name='product_id']/form/field[1]" position="before">
+          <field name="package"/>
+        </xpath>
+    actions opening views on models -->
     <!--
     <record model="ir.actions.act_window" id="invoices.action_window">
       <field name="name">Invoices window</field>
