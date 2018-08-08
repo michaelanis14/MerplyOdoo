@@ -4,13 +4,14 @@
     <record model="ir.ui.view" id="invoices.list">
 
       <field name="model">account.invoice</field>
+
       <field name="inherit_id" ref="account.invoice_form"/>
       <field name="arch" type="xml">
 
-        <field name="date_invoice" position="before">
+       <field name="date_invoice" position="before">
 
           <field name="Consignee"/>
-          <field name="Intermediate_consignee"/>
+         <field name="Exporting_date"/>
 
         </field>
 
@@ -20,18 +21,24 @@
           <field name="Exporting_carrier"/>
           <field name="Exporting_date"/>
 
+
         </field>
 
+        <xpath expr="/form/sheet/notebook/page/field[@name='invoice_line_ids']/tree/field[@name='product_id']" position="before">
+          <field name="package" />
+        </xpath>
 
-
-
+        <xpath expr="/form/sheet/notebook/page/field[@name='invoice_line_ids']/tree/field[@name='name']" position="after">
+          <field name="account" />
+        </xpath>
       </field>
     </record>
 
-<!--  <xpath expr="//form/sheet/notebook/" position="inside">
-          <page string="Product">
-            <field name="package"/>
-          </page>
+<!--
+
+
+<xpath expr="//field[@name='product_id']/field[1]" position="before">
+          <field name="package"/>
         </xpath>
 
         <xpath expr="//field[@name='product_id']/form/field[1]" position="before">
