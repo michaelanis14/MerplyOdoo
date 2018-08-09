@@ -6,8 +6,8 @@ class master_Invoices(models.Model):
 
      _inherit ='account.invoice.line'
 
-     package = fields.Integer('Package')
-     account = fields.Char('Account')
+     #package = fields.Integer('Package')
+     #account = fields.Char('Account')
 
 
 

@@ -1,4 +1,4 @@
 # -*- coding: utf-8 -*-
 
-from . import models
-from . import for_details
+from . import models, Consignee_info, Cargo_info, invoice_info
+

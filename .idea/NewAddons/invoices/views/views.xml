@@ -1,20 +1,89 @@
 <odoo>
   <data>
 
-    <record model="ir.ui.view" id="invoices.list">
-
+  <record model="ir.ui.view" id="invoices.list">
       <field name="model">account.invoice</field>
-
       <field name="inherit_id" ref="account.invoice_form"/>
       <field name="arch" type="xml">
 
-       <field name="date_invoice" position="before">
+          <field name="date_invoice" position="before">
+              <field name="consignee_name"/>
+          </field>
 
-          <field name="Consignee"/>
-         <field name="Exporting_date"/>
+          <xpath expr="/form/sheet/notebook/page/field[@name='invoice_line_ids']/tree/field[@name='product_id']" position="before">
+              <field name="package_no" />
+          </xpath>
 
-        </field>
+          <xpath expr="/form/sheet/notebook/page/field[@name='invoice_line_ids']/tree/field[@name='name']" position="after">
+              <field name="net_weight" />
+          </xpath>
 
+          <xpath expr="/form/sheet/notebook/page/field[@name='invoice_line_ids']/tree/field[@name='net_weight']" position="after">
+              <field name="gross_weight" />
+          </xpath>
+
+          <xpath expr="/form/sheet/notebook/page[@name='other_info']/group/group/field[@name='fiscal_position_id']" position="before">
+             <field name="mawb" />
+          </xpath>
+
+          <xpath expr="/form/sheet/notebook/page[@name='other_info']/group/group/field[@name='move_id']" position="before">
+              <field name="hawb" />
+          </xpath>
+
+
+          <xpath expr="/form/sheet/notebook/page[@name='other_info']" position='after'>
+
+               <page string='Charges Info'>
+
+                   <group>
+                       <group>
+
+                           <field name="freight_charges"/>
+                           <field name="discharge_expenses" />
+
+                       </group>
+                       <group>
+
+                            <field name="exw" />
+                           <field name="fob" />
+
+                       </group>
+                   </group>
+
+               </page>
+
+           </xpath>
+           <!-- <xpath expr="/form/sheet/notebook/page/field[@name='invoice_line_ids']/tree/field[@name='product_id']" position="before">
+              <field name="package_no" />
+          </xpath>
+
+          <xpath expr="/form/sheet/notebook/page/field[@name='invoice_line_ids']/tree/field[@name='name']" position="after">
+              <field name="net_weight" />
+          </xpath>
+
+          <xpath expr="/form/sheet/notebook/page/field[@name='invoice_line_ids']/tree/field[@name='net_weight']" position="after">
+              <field name="gross_weight" />
+          </xpath>
+
+          <xpath expr="//field[@name='product_id']" position="attributes">
+              <attribute name="string">Delivered Order</attribute>
+          </xpath>
+
+
+
+           -->
+
+      </field>
+    </record>
+
+
+
+
+
+
+
+
+        <!--
 
         <field name="payment_term_id" position="after">
 
@@ -30,22 +99,15 @@
 
         <xpath expr="/form/sheet/notebook/page/field[@name='invoice_line_ids']/tree/field[@name='name']" position="after">
           <field name="account" />
-        </xpath>
-      </field>
-    </record>
+        </xpath>-->
+
+
+
+
 
 <!--
+    actions opening views on models
 
-
-<xpath expr="//field[@name='product_id']/field[1]" position="before">
-          <field name="package"/>
-        </xpath>
-
-        <xpath expr="//field[@name='product_id']/form/field[1]" position="before">
-          <field name="package"/>
-        </xpath>
-    actions opening views on models -->
-    <!--
     <record model="ir.actions.act_window" id="invoices.action_window">
       <field name="name">Invoices window</field>
       <field name="res_model">invoices.invoices</field>
