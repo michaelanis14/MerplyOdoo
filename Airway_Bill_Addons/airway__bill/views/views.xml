@@ -1,0 +1,154 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="airway__bill.list">
+            <field name="name">Airway_Bill.form</field>
+            <field name="model">airway__bill.airway__bill</field>
+            <field name="arch" type="xml">
+                <form string="Airway Bill Form">
+                    <sheet>
+                      <h1 class="mt0">
+                        <div>
+                          <label string="Invoice Number:"/><br/>
+                          <field name="invoice_no"/>
+                        </div>
+                      </h1>
+
+                        <group>
+                        <group>
+                            <field  name="chipper_name"/>
+                        </group>
+                        <group>
+                            <field name="consignee_name"/>
+                            <field name="invoice_date"/>
+
+                        </group>
+                    </group>
+
+                       <notebook colspan="4">
+                        <page string="Invoice Lines">
+                                <group>
+                                    <field name="mawb"/>
+                                    <field name="hawb"/>
+                                </group>
+                        </page>
+
+                        <page string="Cargo Info">
+                          <group>
+                                <group>
+                                    <field name="package_no"/>
+                                    <field name="net_weight"/>
+                                    <field name="gross_weight"/>
+                                </group>
+                                <group>
+                                    <field name="delevary_order"/>
+                                    <field name="currency"/>
+                                </group>
+                          </group>
+
+                        </page>
+
+                          <page string="Cargo Info">
+                            <group>
+                                <group>
+                                    <field name="freight_charges"/>
+                                    <field name="discharge_expenses"/>
+                                </group>
+
+                                <group>
+                                    <field name="exw"/>
+                                    <field name="fob"/>
+                                </group>
+
+                            </group>
+                        </page>
+                    </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="Airway_Bill_list_action">
+            <field name="name">Airway Bill</field>
+            <field name="res_model">airway__bill.airway__bill</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="airway__bill_menu" name="Airway Bill"
+                  parent=""
+                  sequence="10"
+                  action="Airway_Bill_list_action"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- explicit list view definition
+
+    <record model="ir.ui.view" id="airway__bill.list">
+      <field name="name">Airway Bill</field>
+      <field name="model">airway__bill.airway__bill</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="invoice_no"/>
+          <field name="chipper_name"/>
+          <field name="consignee_name"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models
+
+    <record model="ir.actions.act_window" id="airway__bill.action_window">
+      <field name="name">Airway_Bill window</field>
+      <field name="res_model">airway__bill.airway__bill</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_type">form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="AWBmodel.action_server">
+      <field name="name">Airway_Bill server</field>
+      <field name="model_id" ref="model_airway__bill_airway__bill"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="Airway_Bill" id="AWBmodel.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="AWBmodel.menu_1" parent="AWBmodel.menu_root"/>
+    <menuitem name="Menu 2" id="AWBmodel.menu_2" parent="AWBmodel.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="AWBmodel.menu_1_list" parent="AWBmodel.menu_1"
+              action="AWBmodel.action_window"/>
+    <menuitem name="Server to list" id="AWBmodel" parent="AWBmodel.menu_2"
+              action="AWBmodel.action_server"/>
+    -->
+  </data>
+</odoo>
