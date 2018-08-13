@@ -5,22 +5,11 @@ class airway__bill(models.Model):
     _name = 'airway__bill.airway__bill'
 
     #consignee info
-    consignee_name = fields.Selection(selection=[
-
-         ('agent1', 'Agent 1'),
-
-         ('agent2', 'Agent 2'), ],
-         string='Consignee')
+    consignee_name = fields.Many2one('res.partner', 'Consignee')
+    intermediate_consignee = fields.Many2one('consignee_name', 'Intermediate Consignee')
 
     #CHIPPER INFO
-    chipper_name = fields.Selection(selection=[
-
-         ('agent1', 'Agent 1'),
-
-         ('agent2', 'Agent 2'), ],
-         string='Chipper')
-
-
+    chipper_name = fields.Many2one('res.partner', 'Chipper')
 
     #CHARGES INFO
     freight_charges = fields.Float('Freight Charges')
@@ -28,18 +17,24 @@ class airway__bill(models.Model):
     exw = fields.Float('ExWorks Charges')
     fob = fields.Float('FOB Charges')
 
-    #cargo info
-    delevary_order = fields.Char('Delevary Order')
-    currency = fields.Char('Currency')
-    package_no = fields.Integer('Package')
-    net_weight = fields.Float('Net Weight')
-    gross_weight = fields.Float('Gross Weight')
-
-    #INVOICE INFO
+     #INVOICE INFO
     mawb = fields.Char('MAWB')
     hawb = fields.Char('HAWB')
     invoice_no = fields.Char('Invoice Number')
     invoice_date = fields.Date('Invoice Date')
+
+    # cargo info
+    package_no = fields.Integer('Number Of Package')
+    delevary_order = fields.Many2one('product.template', 'Delevared Product')
+    description = fields.Text('Description')
+    account = fields.Text('Account')
+    quantity = fields.Float('Quantity')
+    currency = fields.Char('Currency')
+    vat = fields.Float('VAT')
+    net_weight = fields.Float('Net Weight')
+    gross_weight = fields.Float('Gross Weight')
+    amount = fields.Float('Amount')
+
 
 #
 
