@@ -49,12 +49,12 @@
 
             </notebook>
 
-             <!--<group>
+             <group>
                 <group></group>
                 <group>
                     <field name="amount"/>
                 </group>
-            </group>-->
+            </group>
         </form>
       </field>
     </record>

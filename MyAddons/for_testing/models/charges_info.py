@@ -5,4 +5,4 @@ class charges_model(models.Model):
 
     charge = fields.Char('Charges')
     charge_value = fields.Float('Value')
-    #charge_connect = fields.One2many('illing_master_info.filling_master_info', 'charge item')
+    charge_connect = fields.One2many('filling_master_info.filling_master_info')
