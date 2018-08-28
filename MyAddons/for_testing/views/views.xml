@@ -6,11 +6,11 @@
       <field name="name">fill_Master_Info.form</field>
       <field name="model">filling_master_info.filling_master_info</field>
       <field name="arch" type="xml">
-      <!--field name="help" type="html">
+      <field name="help" type="html">
           <p class="oe_view_nocontent_create">
               click to add Information
           </p>
-      </field-->
+      </field>
         <form>
           <group>
               <group>
