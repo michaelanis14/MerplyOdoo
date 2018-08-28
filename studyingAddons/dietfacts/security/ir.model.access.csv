@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_dietfacts_dietfacts,dietfacts.dietfacts,model_dietfacts_dietfacts,,1,0,0,0
+access_users_meals,access_users_meals,model_users_meals,,1,0,0,0
+access_meals_items,access_meals_items,model_meals_items,,1,0,0,0
