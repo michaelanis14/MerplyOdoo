@@ -1,89 +1,100 @@
 <odoo>
   <data>
 
-    <record model="ir.ui.view" id="project_form">
-          <field name="name">Project Form</field>
+
+      <record id="airWaybill_form" model="ir.ui.view">
+          <field name="name">Air Waybill Form</field>
           <field name="model">project.main</field>
-          <!--field name="view_type">form</field-->
+
           <field name="arch" type="xml">
 
                   <form>
 
                       <group>
                           <group>
-                            <field name="consignee"/>
+                              <field name="shipper"/>
+                              <field name="consignee"/>
+
                           </group>
 
                            <group>
-                               <field name="mawb"/>
-                               <field name="hawb"/>
-                               <field name="date"/>
+
+                               <field name="agent_name"/>
+                               <field name="AITA_code"/>
+                               <field name="account_no"/>
                           </group>
 
                       </group>
 
                       <notebook>
-                          <page string="Cargo Info">
-                                <field name="cargo_connector" widget="one2many_list">
-                                    <tree string="Cargos" editable="bottom">
-                                      <field name="delivery_order"/>
-                                      <field name="no_of_packages"/>
-                                      <field name="gross_weight"/>
-                                      <field name="net_weight"/>
+                          <page string="Routing and distnation">
+                                <field name="routingO2M_connector" widget="one2many_list">
+                                    <tree string="Routing and distnation" editable="bottom">
+                                      <field name="airport_of_departure"/>
+                                      <field name="to"/>
+                                      <field name="by"/>
+                                      <field name="airport_of_destination"/>
+                                      <field name="flight_no"/>
+                                      <field name="flight_date"/>
                                     </tree>
                                 </field>
                           </page>
 
-                            <page string="Charges Info">
-                                <field name="charges_connector" widget="one2many_list">
-                                    <tree string="Charges" editable="bottom">
-                                      <field name="charge_name"/>
-                                      <field name="charge_value"/>
-                                    </tree>
+                            <page string="Charges Decleration">
+                                <field name="chargesO2M_connector">
+                                   <group>
+                                        <group>
+                                            <field name="currency"/>
+                                            <field name="charge_code"/>
+                                            <field name="declared_carriage"/>
+                                            <field name="declared_customs"/>
+                                            <field name="declared_customs"/>
+                                        </group>
+                                        <group>
+                                            <group>
+                                                <p>WT/VAL</p>
+                                                <field name="ppd"/>
+                                                <field name="coll"/>
+                                            </group>
+                                            <group>
+                                                <p>Other</p>
+                                                <field name="ppd"/>
+                                                <field name="coll"/>
+                                            </group>
+                                        </group>
+                                    </group>
                                 </field>
                           </page>
                       </notebook>
 
                       <group>
-                        <group>
-                          <field name="destination_airport"/>
-                          <field name="departure_airport"/>
-                        </group>
-                        <group>
-                          <field name="totalCharges"/>
-                        </group>
-                      </group>
-
-                  </form>
-            </field>
-        </record>
-
-
-    <record model="ir.ui.view" id="consignee_form">
-          <field name="name">Meal Form</field>
-          <field name="model">consignee.info</field>
-          <!--field name="view_type">form</field-->
-          <field name="arch" type="xml">
-
-                  <form>
-
-                      <group>
                           <group>
-                            <field name="consignee_name"/>
-                            <field name="consignee_street1"/>
-                            <field name="consignee_street2"/>
-                            <field name="consignee_state"/>
-                            <field name="consignee_city"/>
-                            <field name="consignee_country"/>
-                          </group>
+                              <field name="handling_information"/>
 
-                           <group>
-                               <field name="consignee_tel"/>
-                               <field name="consignee_fax"/>
-                               <field name="consignee_email"/>
-                               <field name="consignee_salesperson"/>
+                          </group>
+                          <group>
+                              <field name="sci"/>
+                              <field name="_destination"/>
                           </group>
                       </group>
+
+                       <group>
+                          <group>
+                              <field name="no_of_pieces"/>
+                              <field name="gross_weight"/>
+                              <field name="Chargeable_Wight"/>
+                              <field name="commodity_item_no"/>
+                              <field name="rate_charge"/>
+                              <field name="tax"/>
+                          </group>
+                          <group>
+
+                              <field name="quantity"/>
+                          </group>
+                      </group>
+
+
+
 
                   </form>
             </field>
@@ -110,6 +121,8 @@
             name="Project"
             sequence="10"
             action="project_main_menu_action"/>
+
+
 
     <!-- explicit list view definition -->
     <!--
