@@ -1,0 +1,87 @@
+<odoo>
+  <data>
+
+     <!--  MAWB -->
+      <record id="HAWB_form" model="ir.ui.view">
+          <field name="name">HAWB Form</field>
+          <field name="model">hawb.model</field>
+          <field name="arch" type="xml">
+              <form>
+                  <sheet>
+                      <div>
+                          <label string="HAWB Number:"/><br/>
+                      </div>
+
+                      <group>
+                          <field name="mawb_IDs" wedgit="many2one_list"/>
+                          <field name="airD"/>
+                      </group>
+
+                  </sheet>
+              </form>
+          </field>
+      </record>
+
+      <record id="HAWB_tree" model="ir.ui.view">
+          <field name="name">HAWB tree</field>
+          <field name="model">hawb.model</field>
+          <field name="arch" type="xml">
+              <tree>
+                  <field name="hawb_no"/>
+
+
+              </tree>
+          </field>
+      </record>
+
+      <record id="HAWB_kanban" model="ir.ui.view">
+          <field name="name">HAWB kanban</field>
+          <field name="model">hawb.model</field>
+          <field name="arch" type="xml">
+              <kanban>
+                  <field name="hawb_no"/>
+
+                  <templates>
+                      <t t-name="kanban-box">
+                          <div class="oe_kanban_global_click">
+                              <div class="o_kanban_image">
+                                  <img t-att-src="kanban_image('product.template', 'image_small')"/>
+                              </div>
+                              <div class="oe_kanban_details">
+                                  <strong>
+                                      <field name="hawb_no"/>
+                                  </strong>
+                                  <div name="tags"/>
+
+                              </div>
+                          </div>
+                      </t>
+                  </templates>
+              </kanban>
+          </field>
+      </record>
+
+         <!--  HAWB Menu -->
+
+    <record id="hawb_menu_action" model="ir.actions.act_window">
+          <field name="name"> HAWB </field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">hawb.model</field>
+          <field name="view_mode">tree,form,kanban</field>
+          <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                  Click to add New HAWB
+              </p>
+          </field>
+      </record>
+
+    <menuitem name="HAWB"
+                id="hawb_mnue"
+                parent="mawb_menu"
+                action="hawb_menu_action"/>
+
+
+
+
+  </data>
+</odoo>
