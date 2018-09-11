@@ -20,11 +20,13 @@
                           </group>
                           <group>
                               <field name="agent_name"/>
-                              <field name="AITA_code"/>
+                              <field name="aiata_code"/>
                               <field name="account_no"/>
                           </group>
                       </group>
                       <!--********************************************************************************************************-->
+
+
                       <!--***********first notebook *****************************************************************************-->
                       <notebook>
                           <!--***********Rate Description Item  page ************************************************************-->
@@ -107,7 +109,8 @@
                                       <field name="carriage_value" placeholder="Enter declared value " attrs="{'invisible': [('declared_carriage','=', 'nvd')]}"/>
                                       <field name="declared_customs" widget="selection" />
                                       <field name="customs_value" placeholder="Enter declared value " attrs="{'invisible': [('declared_customs','=', 'ncv')]}"/>
-                                      <field name="account_insurance"/>
+                                      <field name="account_insurance" widget="selection" />
+                                      <field name="insurance_value" placeholder="Enter Insurance value " attrs="{'invisible': [('insurance_value','=', 'nil')]}"/>
                                   </group>
                               </group>
                           </page>
@@ -121,7 +124,6 @@
                           </group>
                           <group>
                               <field name="sci"/>
-                              <field name="_destination"/>
                           </group>
                       </group>
                       <!--***********************************************************************************************************-->

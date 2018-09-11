@@ -7,7 +7,8 @@ class Cargo_Model(models.Model):
     _description = 'Cargo Information'
 
 
-    cargo_IDs = fields.Many2one('mawb.model')
+    cargoM_IDs = fields.Many2one('mawb.model')
+    cargoH_IDs = fields.Many2one('mawb.model')
 
     no_of_pieces = fields.Integer('No. of Pieces')
     gross_weight = fields.Float('Gross Weight')
