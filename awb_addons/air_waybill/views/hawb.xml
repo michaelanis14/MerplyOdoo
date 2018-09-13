@@ -20,6 +20,8 @@
                           <group>
                               <field name="h_shipper"/>
                               <field name="h_consignee"/>
+                              <field name="m_no_of_pecies"/>
+                              <field name="h_no_of_pecies"/>
                           </group>
                           <group>
                               <field name="h_agent_name"/>
@@ -256,7 +258,7 @@
 
     <menuitem name="HAWB"
                 id="hawb_mnue"
-                parent="mawb_menu"
+                parent="hawb_mnueitem"
                 action="hawb_menu_action"/>
 
 

@@ -8,7 +8,10 @@ class MAWB_Model(models.Model):
     _description = 'MAWB Model'
 
 # ========= IDs ========================================================================================================
-    cargos_ID = fields.One2many('cargo.details', 'cargoM_IDs', 'Rate Description Item')
+    cargos_ID = fields.One2many('cargo.details', 'cargoM_IDs')
+    hawb_ID  = fields.One2many('hawb.model', 'mawb_IDs')
+
+
     mawb_ID = fields.Many2one('mawb.model')
 
     mawb_no = fields.Char(string='MAWB Number')
@@ -43,9 +46,9 @@ class MAWB_Model(models.Model):
     currency_ID = fields.Many2one('res.currency', 'Currency')
     charge_code = fields.Char('CHGS CODE')
     declared_carriage = fields.Selection([('nvd', 'NVD'),('value', 'Value')],default='nvd')
-    carriage_value = fields.Float('Carriage Value')
+    carriage_value = fields.Float('Carriage Value',digits=(6, 2))
     declared_customs = fields.Selection([('ncv', 'NCV'),('value', 'Value')],default='ncv')
-    customs_value = fields.Float('Customs Value')
+    customs_value = fields.Float('Customs Value',digits=(6, 2))
 
     account_insurance = fields.Selection([('nil', 'NIL'),('other', 'Other')],default='nil')
     insurance_value = fields.Text('Other')
@@ -59,23 +62,23 @@ class MAWB_Model(models.Model):
     sci = fields.Char('SCI')
 
 #========= charges Sammary =============================================================================================
-    currency_rate = fields.Float('Currency Convertion Rates')
-    cc_charges_in_dest_currency = fields.Float('Charges in Dest Currency')
-    charges_at_dest = fields.Float('Charges at Destination')
+    currency_rate = fields.Float('Currency Convertion Rates',digits=(6, 2))
+    cc_charges_in_dest_currency = fields.Float('Charges in Dest Currency',digits=(6, 2))
+    charges_at_dest = fields.Float('Charges at Destination',digits=(6, 2))
     other_charges = fields.Text('Other Charges')
-    total_collect_charges = fields.Float('Total Collect Charges')
+    total_collect_charges = fields.Float('Total Collect Charges',digits=(6, 2))
 
 #========= charges in Destination currency =============================================================================
-    weight_charge = fields.Float(compute='_cal_total', string="Weight Charge", store= True)
-    valuation_charge = fields.Float('Valuation Charge')
-    tax = fields.Float('Tax')
-    Charges_due_agent = fields.Float('Total Other Charges Due Agent')
-    Charges_due_carrier = fields.Float('Total Other Charges Due Carrier')
-    total_charges = fields.Float(compute='_compute_total_charges')
+    weight_charge = fields.Float(compute='_cal_total', string="Weight Charge", store= True,digits=(6, 2))
+    valuation_charge = fields.Float('Valuation Charge',digits=(6, 2))
+    tax = fields.Float('Tax',digits=(6, 2))
+    Charges_due_agent = fields.Float('Total Other Charges Due Agent',digits=(6, 2))
+    Charges_due_carrier = fields.Float('Total Other Charges Due Carrier',digits=(6, 2))
+    total_charges = fields.Float(compute='_compute_total_charges',digits=(6, 2))
+    total_peices = fields.Float(compute='_cal_peices',digits=(6, 2))
 
 #========= Functions ==================================================page2============================================
 
-    @api.one
     @api.depends('cargos_ID')
     def _cal_total(self):
         current_total = 0
@@ -83,6 +86,14 @@ class MAWB_Model(models.Model):
             current_total = current_total + item.total
 
             self.weight_charge = current_total
+
+    @api.depends('cargos_ID')
+    def _cal_peices(self):
+        current_peices = 0
+        for item in self.cargos_ID:
+            current_peices = current_peices + item.no_of_pieces
+
+            self.total_peices = current_peices
 
 
     @api.one

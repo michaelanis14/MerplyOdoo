@@ -10,10 +10,10 @@ class HAWB_Model(models.Model):
 # ========= IDs ========================================================================================================
     mawb_IDs = fields.Many2one("mawb.model")
     hawb_IDs = fields.Many2one("hawb.model")
-    h_cargos_ID = fields.One2many('cargo.details', 'cargoH_IDs', 'Rate Description Item')
+    h_cargos_ID = fields.One2many('cargo.details', 'cargoH_IDs')
 
 
-    hawb_no = fields.Char(string='HAWB Number')
+    hawb_no = fields.Integer(string='HAWB Number')
 
 #========= adressess information =======================================================================================
     h_shipper = fields.Many2one('res.partner', 'Shipper', requiered=True)
@@ -62,11 +62,11 @@ class HAWB_Model(models.Model):
     h_declared_carriage = fields.Selection(related='mawb_IDs.declared_carriage',
                        string='Declared Carriage', store=True, readonly=True)
     h_carriage_value = fields.Float(related='mawb_IDs.carriage_value',
-                       string='Declared Value', store=True, readonly=True)
+                       string='Declared Value', store=True, readonly=True,digits=(6, 2))
     h_declared_customs = fields.Selection(related='mawb_IDs.declared_customs',
                        string='Customs Carriage', store=True, readonly=True)
     h_customs_value = fields.Float(related='mawb_IDs.carriage_value',
-                       string='Customs Value', store=True, readonly=True)
+                       string='Customs Value', store=True, readonly=True,digits=(6, 2))
 
     h_account_insurance = fields.Selection(related='mawb_IDs.account_insurance',
                        string='Amount of Insurance', store=True, readonly=True)
@@ -84,19 +84,19 @@ class HAWB_Model(models.Model):
                        string='SCI', store=True, readonly=True)
 
 # ========= charges Sammary ============================================================================================
-    h_currency_rate = fields.Float('Currency Convertion Rates')
-    h_cc_charges_in_dest_currency = fields.Float('Charges in Dest Currency')
-    h_charges_at_dest = fields.Float('Charges at Destination')
+    h_currency_rate = fields.Float('Currency Convertion Rates',digits=(6, 2))
+    h_cc_charges_in_dest_currency = fields.Float('Charges in Dest Currency',digits=(6, 2))
+    h_charges_at_dest = fields.Float('Charges at Destination',digits=(6, 2))
     h_other_charges = fields.Text('Other Charges')
-    h_total_collect_charges = fields.Float('Total Collect Charges')
+    h_total_collect_charges = fields.Float('Total Collect Charges',digits=(6, 2))
 
 # ========= charges in Destination currency ============================================================================
-    h_weight_charge = fields.Float(compute='_cal_weight_charge', string="Weight Charge", store=True)
-    h_valuation_charge = fields.Float('Valuation Charge')
-    h_tax = fields.Float('Tax')
-    h_Charges_due_agent = fields.Float('Total Other Charges Due Agent')
-    h_Charges_due_carrier = fields.Float('Total Other Charges Due Carrier')
-    h_total_charges = fields.Float(compute='_compute_total_charges')
+    h_weight_charge = fields.Float(compute='_cal_weight_charge', string="Weight Charge", store=True,digits=(6, 2))
+    h_valuation_charge = fields.Float('Valuation Charge',digits=(6, 2))
+    h_tax = fields.Float('Tax',digits=(6, 2))
+    h_Charges_due_agent = fields.Float('Total Other Charges Due Agent',digits=(6, 2))
+    h_Charges_due_carrier = fields.Float('Total Other Charges Due Carrier',digits=(6, 2))
+    h_total_charges = fields.Float(compute='_compute_total_charges',digits=(6, 2))
 
 # ========= Functions ==================================================================================================
 
@@ -120,13 +120,20 @@ class HAWB_Model(models.Model):
 
         return True
 
-    @api.multi
-    @api.depends('h_cargos_ID','mawb_IDs')
-    def _rais_error(self):
-        for item in self:
-            if item.no_of_pieces > item.mawb_IDs.no_of_pieces:
-                raise ValidationError('number of pecis in HAWB should be less than MAWB')
 
+    m_no_of_pecies = fields.Integer(related='mawb_IDs.total_peices',
+                       store=True, readonly=True)
+
+    h_no_of_pecies = fields.Integer(related='h_cargos_ID.no_of_pieces',
+                                    store=True, readonly=True)
+
+
+    @api.depends('h_cargos_ID')
+    @api.constrains('h_no_of_pecies')
+    def _verify_valid_no_of_pieces(self):
+        for item in self:
+            if item.h_no_of_pecies > item.m_no_of_pecies:
+                raise ValidationError('number of pecis in HAWB should be less than MAWB')
 
         return True
 
