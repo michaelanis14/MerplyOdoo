@@ -10,11 +10,13 @@ class MAWB_Model(models.Model):
 # ========= IDs ========================================================================================================
     cargos_ID = fields.One2many('cargo.details', 'cargoM_IDs')
     hawb_ID  = fields.One2many('hawb.model', 'mawb_IDs')
+    afb_ID  = fields.One2many('account.invoice', 'mawb_afb_ID')
+
 
 
     mawb_ID = fields.Many2one('mawb.model')
 
-    mawb_no = fields.Char(string='MAWB Number')
+    mawb_no = fields.Char(size=11, string='MAWB Number')
 
 # ========= adressess information ======================================================================================
     shipper = fields.Many2one('res.partner', 'Shipper', requiered=True)

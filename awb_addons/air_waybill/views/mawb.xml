@@ -266,14 +266,17 @@
                 </record>
 
     <menuitem name="MAWB"
-                    id="mawb_menu"
-                    sequence="10"
-                    action="mawb_menu_action"/>
+              id="mawb_menu_root" />
 
-    <menuitem name="HAWB"
-                id="hawb_mnueitem"
-                parent="mawb_menu"
-                action="mawb_menu_action"/>
+
+       <menuitem name="Master AWB"
+                 id="mawb_menuitem"
+                 parent="mawb_menu_root"/>
+
+      <menuitem name="Master AWB"
+                 id="mawb_menulist"
+                 parent="mawb_menuitem"
+                 action="mawb_menu_action"/>
 
   </data>
 </odoo>

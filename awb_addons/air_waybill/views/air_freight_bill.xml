@@ -1,0 +1,65 @@
+<odoo>
+  <data>
+
+     <!--  Air freight bill -->
+      <record id="Air_freight_bill_form" model="ir.ui.view">
+          <field name="name">Air freight bill Form</field>
+          <field name="model">account.invoice</field>
+          <field name="inherit_id" ref="account.invoice_form"/>
+          <field name="arch" type="xml">
+              <field name="partner_id" position="after">
+                  <field name="account_to"/>
+                  <field name="hawb_afb_ID"/>
+                  <field name="afb_no_of_pieces"/>
+              </field>
+              <field name="user_id" position="after">
+                  <field name="mawb_a"/>
+                  <field name="afb_weight"/>
+              </field>
+
+              <xpath expr="//page[@name='other_info']" position='after'>
+                  <page string='Services'>
+                      <field name="services_ID">
+
+                          <tree>
+                              <field name="service_name"/>
+                              <field name="currency_ID"/>
+                              <field name="cost"/>
+                              <field name="main"/>
+                          </tree>
+                      </field>
+
+                  </page>
+	          </xpath>
+          </field>
+
+
+      </record>
+
+      <record id="air_freight_bill_action" model="ir.actions.act_window">
+            <field name="name"> Air Freight Bill </field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.invoice</field>
+            <field name="view_mode">form</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="account.invoice_form"/>
+            <field name="help" type="html">
+
+                <p class="oe_view_nocontent_create">
+                    Click to create Air Freight Bill
+                </p>
+            </field>
+        </record>
+
+      <menuitem name="Air Freight Bill"
+              id="air_freight_bill_menuitem"
+              parent="mawb_menu_root"/>
+
+      <menuitem name="Air Freight Bill"
+              id="air_freight_bill_menulist"
+              parent="mawb_menuitem"
+              action="air_freight_bill_action"/>
+
+
+  </data>
+</odoo>

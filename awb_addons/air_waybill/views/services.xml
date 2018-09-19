@@ -1,0 +1,31 @@
+<odoo>
+  <data>
+
+     <!--  Air freight bill -->
+      <record id="services_form" model="ir.ui.view">
+          <field name="name">Services Form</field>
+          <field name="model">services.model</field>
+          <field name="arch" type="xml">
+              <form>
+                  <group>
+                      <group>
+                          <field name="service_name"/>
+                          <field name="currency_ID"/>
+                          <field name="sale"/>
+                          <field name="main"/>
+                      </group>
+                      <group >
+                          <field name="description"/>
+                          <field name="vendor"/>
+                          <field name="cost"/>
+                          <field name="lump_sum"/>
+                      </group>
+                  </group>
+              </form>
+          </field>
+
+
+      </record>
+
+  </data>
+</odoo>

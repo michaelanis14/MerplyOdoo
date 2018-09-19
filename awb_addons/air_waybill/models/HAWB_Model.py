@@ -13,7 +13,7 @@ class HAWB_Model(models.Model):
     h_cargos_ID = fields.One2many('cargo.details', 'cargoH_IDs')
 
 
-    hawb_no = fields.Integer(string='HAWB Number')
+    hawb_no = fields.Char(size=11, string='HAWB Number')
 
 #========= adressess information =======================================================================================
     h_shipper = fields.Many2one('res.partner', 'Shipper', requiered=True)
@@ -98,6 +98,14 @@ class HAWB_Model(models.Model):
     h_Charges_due_carrier = fields.Float('Total Other Charges Due Carrier',digits=(6, 2))
     h_total_charges = fields.Float(compute='_compute_total_charges',digits=(6, 2))
 
+    # ========= calcs ============================================================================
+    total_gross = fields.Float(compute='_compute_gross', string="gross", digits=(6, 2))
+    total_chargable = fields.Float(compute='_compute_chargable', string="chargable", digits=(6, 2))
+
+    h_weight = fields.Float(compute='_compare_weights', string="weight",digits=(6, 2))
+    h_no_of_pieces = fields.Integer(compute='_compute_no_of_pieces', string="No of Pieces", digits=(6, 2))
+
+
 # ========= Functions ==================================================================================================
 
     @api.one
@@ -120,20 +128,39 @@ class HAWB_Model(models.Model):
 
         return True
 
-
-    m_no_of_pecies = fields.Integer(related='mawb_IDs.total_peices',
-                       store=True, readonly=True)
-
-    h_no_of_pecies = fields.Integer(related='h_cargos_ID.no_of_pieces',
-                                    store=True, readonly=True)
-
-
+    @api.one
     @api.depends('h_cargos_ID')
-    @api.constrains('h_no_of_pecies')
-    def _verify_valid_no_of_pieces(self):
-        for item in self:
-            if item.h_no_of_pecies > item.m_no_of_pecies:
-                raise ValidationError('number of pecis in HAWB should be less than MAWB')
+    def _compute_gross(self):
+        current_GW = 0
+        for item in self.h_cargos_ID:
+            current_GW = current_GW + item.gross_weight
 
-        return True
+            self.total_gross = current_GW
 
+    @api.one
+    @api.depends('h_cargos_ID')
+    def _compute_chargable(self):
+        current_ch = 0
+        for item in self.h_cargos_ID:
+            current_ch = current_ch + item.Chargeable_Wight
+
+            self.total_chargable = current_ch
+
+
+    @api.one
+    @api.depends('total_gross', 'total_chargable')
+    def _compare_weights(self):
+
+        if self.total_gross > self.total_chargable:
+            self.h_weight = self.total_gross
+        else:
+            self.h_weight = self.total_chargable
+
+    @api.one
+    @api.depends('h_cargos_ID')
+    def _compute_no_of_pieces(self):
+        current_no = 0
+        for item in self.h_cargos_ID:
+            current_no = current_no + item.no_of_pieces
+
+            self.h_no_of_pieces = current_no

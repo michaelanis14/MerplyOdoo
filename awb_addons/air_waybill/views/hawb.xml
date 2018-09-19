@@ -20,13 +20,12 @@
                           <group>
                               <field name="h_shipper"/>
                               <field name="h_consignee"/>
-                              <field name="m_no_of_pecies"/>
-                              <field name="h_no_of_pecies"/>
                           </group>
                           <group>
                               <field name="h_agent_name"/>
                               <field name="h_aiata_code"/>
                               <field name="h_account_no"/>
+
                           </group>
                       </group>
                       <!--********************************************************************************************************-->
@@ -53,6 +52,8 @@
                                               <field name="class_rate"/>
                                               <field name="commodity_item_no"/>
                                               <field name="rate_charge"/>
+
+
                                           </group>
                                           <group>
 
@@ -256,10 +257,14 @@
           </field>
       </record>
 
-    <menuitem name="HAWB"
-                id="hawb_mnue"
-                parent="hawb_mnueitem"
-                action="hawb_menu_action"/>
+    <menuitem name="House AWB"
+              id="hawb_menuitem"
+              parent="mawb_menu_root"/>
+
+    <menuitem name="House AWB"
+              id="hawb_menulist"
+              parent="mawb_menuitem"
+              action="hawb_menu_action"/>
 
 
 

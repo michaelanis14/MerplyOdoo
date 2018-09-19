@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base','account_invoicing'],
 
     # always loaded
     'data': [
@@ -28,6 +28,8 @@
         'views/templates.xml',
         'views/mawb.xml',
         'views/hawb.xml',
+        'views/air_freight_bill.xml',
+        'views/services.xml',
 
     ],
     # only loaded in demonstration mode
