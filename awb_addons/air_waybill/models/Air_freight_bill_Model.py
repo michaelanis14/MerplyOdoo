@@ -41,7 +41,7 @@ class Air_freight_bill(models.Model):
 
 #========= Functions ==================================================page2============================================
     @api.one
-    @api.depends('afb_weight','price')
+    @api.depends('afb_weight','afb_price')
     def _compute_frieght_charge(self):
 
         return self.afb_weight * self.afb_price

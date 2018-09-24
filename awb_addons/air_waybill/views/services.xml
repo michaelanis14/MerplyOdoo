@@ -10,13 +10,14 @@
                   <group>
                       <group>
                           <field name="service_name"/>
+                          <field name="tax_id"/>
                           <field name="sale"/>
                           <field name="main"/>
                       </group>
                       <group >
                           <field name="description"/>
                           <field name="vendor"/>
-                          <field name="cost"/>
+                          <field name="price_unit" string="Cost"/>
                           <field name="lump_sum"/>
                       </group>
                   </group>
