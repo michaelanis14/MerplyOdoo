@@ -1,0 +1,282 @@
+<odoo>
+  <data>
+
+     <!--  MAWB -->
+      <record id="MAWB_form" model="ir.ui.view">
+          <field name="name">MAWB Form</field>
+          <field name="model">mawb.model</field>
+          <field name="arch" type="xml">
+              <form>
+                  <sheet>
+
+
+                      <div>
+                          <label string="MAWB Number:"/><br/>
+                          <field name="mawb_no" class="oe_inline"/>
+                      </div>
+
+
+                      <!--***********adressess information ************************************************************************-->
+                      <group>
+                          <group>
+                              <field name="shipper"/>
+                              <field name="consignee"/>
+                          </group>
+                          <group>
+                              <field name="agent_name"/>
+                              <field name="aiata_code"/>
+                              <field name="account_no"/>
+                          </group>
+                      </group>
+                      <!--********************************************************************************************************-->
+
+
+                      <!--***********first notebook *****************************************************************************-->
+                      <notebook>
+                          <!--***********Rate Description Item  page ************************************************************-->
+                          <page string='Rate Description Item'>
+                              <field name="cargos_ID">
+
+                                  <tree>
+                                      <field name="no_of_pieces"/>
+                                      <field name="gross_weight"/>
+                                      <field name="Chargeable_Wight"/>
+                                      <field name="total"/>
+
+                                  </tree>
+                                  <form string="Rate Description Item" editable="True">
+                                      <group>
+                                          <group>
+                                              <field name="no_of_pieces"/>
+                                              <field name="gross_weight"/>
+                                              <field name="class_rate"/>
+                                              <field name="commodity_item_no"/>
+                                              <field name="rate_charge"/>
+                                          </group>
+                                          <group>
+
+                                              <field name="l"/>
+                                              <field name="w"/>
+                                              <field name="h"/>
+                                              <field name="description"/>
+                                          </group>
+                                      </group>
+
+                                      <group>
+                                          <field name="shipment_vol"/>
+                                          <field name="Chargeable_Wight"/>
+                                          <field name="total"/>
+                                      </group>
+
+                                  </form>
+                              </field>
+                          </page>
+                          <!--*****************************************************************************************************-->
+                          <!--***********Routing and distnation  page ************************************************************-->
+                          <page string="Routing and distnation">
+                              <group>
+                                  <group>
+                                      <field name="airport_of_departure"/>
+                                  </group>
+
+                                  <group>
+                                      <field name="airport_of_destination"/>
+                                      <field name="flight_no"/>
+                                      <field name="flight_date"/>
+                                  </group>
+                              </group>
+                               <group>
+                                      <group>
+                                          <field name="to"/>
+                                          <field name="to_1"/>
+                                          <field name="to_2"/>
+                                      </group>
+                                      <group>
+                                          <field name="by_first_carrier"/>
+                                          <field name="by_1"/>
+                                          <field name="by_2"/>
+                                      </group>
+                               </group>
+                          </page>
+                          <!--*****************************************************************************************************-->
+                          <!--***********Charges Decleration  page ***************************************************************-->
+                          <page string="Charges Decleration">
+                              <group>
+                                  <group>
+                                      <field name="currency_ID"/>
+                                      <field name="charge_code"/>
+                                      <field name="wt" widget="radio" string='WT/VAL'/>
+                                      <field name="others" widget="radio"  string='Other'/>
+                                  </group>
+                                  <group>
+                                      <field name="declared_carriage" widget="selection" />
+                                      <field name="carriage_value" placeholder="Enter declared value " attrs="{'invisible': [('declared_carriage','=', 'nvd')]}"/>
+                                      <field name="declared_customs" widget="selection" />
+                                      <field name="customs_value" placeholder="Enter declared value " attrs="{'invisible': [('declared_customs','=', 'ncv')]}"/>
+                                      <field name="account_insurance" widget="selection" />
+                                      <field name="insurance_value" placeholder="Enter Insurance value " attrs="{'invisible': [('insurance_value','=', 'nil')]}"/>
+                                  </group>
+                              </group>
+                          </page>
+                          <!--*****************************************************************************************************-->
+                      </notebook>
+                      <!--*********************************************************************************************************-->
+
+
+                      <!--***************Handling Information**********************************************************************-->
+                      <group>
+                          <group>
+                              <field name="handling_information"/>
+                          </group>
+                          <group>
+                              <field name="sci"/>
+                          </group>
+                      </group>
+                      <!--***********************************************************************************************************-->
+
+
+                      <!--***************scoend notebook **************************************************************************-->
+                      <notebook>
+                          <!--*************Charges Sammary page**********************************************************************-->
+                          <page string="Charges Sammary">
+                                  <group attrs="{'invisible': [('wt','=', 'coll')]}">
+
+                                       <group>
+                                          <div>
+                                                <label string="prepaid"/><br/>
+                                          </div>
+                                          <field name="weight_charge"/>
+                                          <field name="valuation_charge"/>
+                                          <field name="tax"/>
+                                          <field name="Charges_due_agent"/>
+                                          <field name="Charges_due_carrier"/>
+                                          <field name="total_charges" string="Total Prepaid"/>
+                                       </group>
+
+                                      <group></group>
+
+                                  </group>
+
+                                   <group attrs="{'invisible': [('wt','=', 'ppd')]}">
+                                       <group></group>
+                                       <group>
+                                          <div>
+                                                <label string="Collected"/><br/>
+                                          </div>
+                                          <field name="weight_charge"/>
+                                          <field name="valuation_charge"/>
+                                          <field name="tax"/>
+                                          <field name="Charges_due_agent"/>
+                                          <field name="Charges_due_carrier"/>
+                                          <field name="total_charges" string="Total Collected"/>
+                                    </group>
+                                   </group>
+                          </page>
+                          <!--******************************************************************************************************-->
+                          <!--*********charges in Destination currency page*******************************************************-->
+                          <page string="charges in Destination currency">
+                              <group>
+                                  <group>
+                                      <field name="currency_rate"/>
+                                      <field name="cc_charges_in_dest_currency"/>
+                                      <field name="charges_at_dest"/>
+                                  </group>
+                                  <group>
+                                      <field name="other_charges"/>
+                                      <field name="total_collect_charges"/>
+                                  </group>
+                              </group>
+
+                          </page>
+                          <!--******************************************************************************************************-->
+                      </notebook>
+                      <!--**********************************************************************************************************-->
+
+
+                  </sheet>
+              </form>
+          </field>
+      </record>
+
+      <record id="MAWB_tree" model="ir.ui.view">
+          <field name="name">MAWB tree</field>
+          <field name="model">mawb.model</field>
+          <field name="arch" type="xml">
+              <tree>
+                  <field name="mawb_no"/>
+                  <field name="shipper"/>
+                  <field name="consignee"/>
+
+              </tree>
+          </field>
+      </record>
+
+      <record id="MAWB_kanban" model="ir.ui.view">
+          <field name="name">MAWB kanban</field>
+          <field name="model">mawb.model</field>
+          <field name="arch" type="xml">
+              <kanban>
+                  <field name="mawb_no"/>
+                  <field name="agent_name"/>
+                  <field name="shipper"/>
+                  <templates>
+                      <t t-name="kanban-box">
+                          <div class="oe_kanban_global_click">
+                              <div class="o_kanban_image">
+                                  <img t-att-src="kanban_image('product.template', 'image_small')"/>
+                              </div>
+                              <div class="oe_kanban_details">
+                                  <strong>
+                                      <field name="mawb_no"/>
+                                  </strong>
+                                  <div name="tags"/>
+                                  <strong>
+                                      <span>shipper: <field name="shipper"/>
+                                  </span>
+                                  </strong>
+                                  <div name="tags"/>
+                                  <strong>
+                                      <span>agent_name: <field name="agent_name"/>
+                                      </span>
+                                  </strong>
+                                  <div name="tags"/>
+                              </div>
+                          </div>
+                      </t>
+                  </templates>
+              </kanban>
+          </field>
+      </record>
+
+         <!--  MAWB Menu -->
+
+    <record id="mawb_menu_action" model="ir.actions.act_window">
+                    <field name="name"> MAWB </field>
+                    <field name="type">ir.actions.act_window</field>
+                    <field name="res_model">mawb.model</field>
+                    <field name="view_mode">tree,form,kanban</field>
+
+                    <field name="help" type="html">
+
+                        <p class="oe_view_nocontent_create">
+
+                            Click to add the bill details
+                        </p>
+                    </field>
+                </record>
+
+    <menuitem name="MAWB"
+              id="mawb_menu_root" />
+
+
+       <menuitem name="Master AWB"
+                 id="mawb_menuitem"
+                 parent="mawb_menu_root"/>
+
+      <menuitem name="Master AWB"
+                 id="mawb_menulist"
+                 parent="mawb_menuitem"
+                 action="mawb_menu_action"/>
+
+  </data>
+</odoo>
