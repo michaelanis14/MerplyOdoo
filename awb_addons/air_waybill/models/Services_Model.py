@@ -3,7 +3,7 @@ import dp as dp
 
 from odoo import models,fields,api
 class Services_Model(models.Model):
-    _inherit = "product.product"
+    _inherit = "product.template"
     _rec_name = 'service_name'
     _description = 'Services Information'
 
