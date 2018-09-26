@@ -41,3 +41,5 @@ class Services_Model(models.Model):
     lump_sum = fields.Boolean('Lumb Sum')
 
 
+
+

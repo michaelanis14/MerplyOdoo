@@ -5,28 +5,30 @@
       <record id="services_form" model="ir.ui.view">
           <field name="name">Services Form</field>
           <field name="model">product.template</field>
-          <field name="inherit_id" ref="product.product_template_only_form_view"/>
           <field name="arch" type="xml">
-              <xpath expr="//page[@name='notes']" position='before'>
-                  <page string='Services'  name="services">
+              <xpath expr="//form" position="attributes">
+                <attribute name="invisible">1</attribute>
+                </xpath>
+              <form>
+                  <sheet>
                       <group>
                           <group>
                               <field name="service_name"/>
                               <field name="currency_id"/>
                               <field name="lst_price"/>
-                              <field name="taxes_id"/>
+                              <field name="taxes_id" widget='many2one_list'/>
                               <field name="main"/>
                           </group>
                           <group >
                               <field name="description"/>
                               <field name="standard_price"/>
                               <field name="seller_ids"/>
-                              <field name="supplier_taxes_id"/>
+                              <field name="supplier_taxes_id" widget='many2one_list'/>
                               <field name="lump_sum"/>
                           </group>
                       </group>
-                  </page>
-              </xpath>
+                  </sheet>
+              </form>
           </field>
       </record>
 
