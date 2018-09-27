@@ -6,29 +6,22 @@
           <field name="name">Services Form</field>
           <field name="model">product.template</field>
           <field name="arch" type="xml">
-              <xpath expr="//form" position="attributes">
+
+              <xpath expr="//field[@name='name']" position="attributes">
                 <attribute name="invisible">1</attribute>
-                </xpath>
-              <form>
-                  <sheet>
-                      <group>
-                          <group>
-                              <field name="service_name"/>
-                              <field name="currency_id"/>
-                              <field name="lst_price"/>
-                              <field name="taxes_id" widget='many2one_list'/>
-                              <field name="main"/>
-                          </group>
-                          <group >
-                              <field name="description"/>
-                              <field name="standard_price"/>
-                              <field name="seller_ids"/>
-                              <field name="supplier_taxes_id" widget='many2one_list'/>
-                              <field name="lump_sum"/>
-                          </group>
-                      </group>
-                  </sheet>
-              </form>
+              </xpath>
+
+              <xpath expr="//field[@name='sale_ok']" position="before">
+                  <label class="oe_edit_only" for="service_name" string="Service Name"/>
+                  <field name="service_name"/>
+              </xpath>
+
+              <xpath expr="//field[@name='image_medium']" position="attributes">
+                <attribute name="invisible">1</attribute>
+              </xpath>
+
+
+
           </field>
       </record>
 
