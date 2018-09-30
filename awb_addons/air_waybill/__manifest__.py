@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Air Waybill",
+    'name': "Air Freight",
 
     'summary': """
         This Module designed to store Air Waybill details """,

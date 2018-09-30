@@ -265,11 +265,11 @@
                     </field>
                 </record>
 
-    <menuitem name="MAWB"
+    <menuitem name="Air Fright"
               id="mawb_menu_root" />
 
 
-       <menuitem name="Master AWB"
+       <menuitem name="Air Fright"
                  id="mawb_menuitem"
                  parent="mawb_menu_root"/>
 
