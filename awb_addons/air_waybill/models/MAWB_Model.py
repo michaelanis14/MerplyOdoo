@@ -16,7 +16,7 @@ class MAWB_Model(models.Model):
 
     mawb_ID = fields.Many2one('mawb.model')
 
-    mawb_no = fields.Char(size=11, string='MAWB Number')
+    mawb_no = fields.Char(size=12, string='MAWB Number')
 
 # ========= adressess information ======================================================================================
     shipper = fields.Many2one('res.partner', 'Shipper', requiered=True)
@@ -80,7 +80,7 @@ class MAWB_Model(models.Model):
     total_peices = fields.Float(compute='_cal_peices',digits=(6, 2))
 
 #========= Functions ==================================================page2============================================
-
+    @api.one
     @api.depends('cargos_ID')
     def _cal_total(self):
         current_total = 0
@@ -89,6 +89,7 @@ class MAWB_Model(models.Model):
 
             self.weight_charge = current_total
 
+    @api.one
     @api.depends('cargos_ID')
     def _cal_peices(self):
         current_peices = 0

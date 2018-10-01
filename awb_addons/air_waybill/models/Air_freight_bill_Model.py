@@ -7,13 +7,13 @@ class Air_freight_bill(models.Model):
     _description = 'Air Freight Bill'
 
 # ========= IDs ========================================================================================================
-    mawb_afb_ID = fields.Many2one("mawb.model")
-    hawb_afb_ID = fields.Many2one("hawb.model")
+    mawb_afb_ID = fields.Many2one("mawb.model",string='MAWB NO')
+    hawb_afb_ID = fields.Many2one("hawb.model",string='HAWB NO')
 
     #services_ID = fields.One2many('services.model', 'invoice_id')
 
-    partner_id = fields.Many2one(related='hawb_afb_ID.h_shipper',string='Partner', store=True, change_default=True,
-                                 required=True, readonly=True, states={'draft': [('readonly', False)]},
+    partner_id = fields.Many2one(related='hawb_afb_ID.h_consignee',string='Partner', store=True, change_default=True,
+                                 required=True, readonly=True,
                                  track_visibility='always')
 
 

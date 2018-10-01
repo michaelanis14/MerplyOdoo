@@ -8,20 +8,11 @@
           <field name="inherit_id" ref="product.product_template_form_view"/>
           <field name="arch" type="xml">
 
-              <xpath expr="//field[@name='name']" position="attributes">
-                <attribute name="invisible">1</attribute>
-              </xpath>
-
-              <xpath expr="//field[@name='sale_ok']" position="before">
-                  <label class="oe_edit_only" for="service_name" string="Service Name"/>
-                  <field name="service_name"/>
-              </xpath>
-
               <xpath expr="//field[@name='image_medium']" position="attributes">
                 <attribute name="invisible">1</attribute>
               </xpath>
 
-
+              <field name="currency_id" />
 
           </field>
       </record>

@@ -40,7 +40,9 @@
                                   <tree>
                                       <field name="no_of_pieces"/>
                                       <field name="gross_weight"/>
+                                      <field name="commodity_item_no"/>
                                       <field name="Chargeable_Wight"/>
+                                      <field name="class_rate"/>
                                       <field name="total"/>
 
                                   </tree>

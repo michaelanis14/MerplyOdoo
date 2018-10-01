@@ -13,7 +13,7 @@ class HAWB_Model(models.Model):
     h_cargos_ID = fields.One2many('cargo.details', 'cargoH_IDs')
 
 
-    hawb_no = fields.Char(size=11, string='HAWB Number')
+    hawb_no = fields.Char(size=12, string='HAWB Number')
 
 #========= adressess information =======================================================================================
     h_shipper = fields.Many2one('res.partner', 'Shipper', requiered=True)
