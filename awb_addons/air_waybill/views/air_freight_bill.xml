@@ -76,26 +76,11 @@
           <field name="model">account.invoice</field>
           <field name="inherit_id" ref="account.invoice_tree"/>
           <field name="arch" type="xml">
-                <tree decoration-info="state == 'draft'" decoration-muted="state == 'cancel'" string="Invoice">
-                    <field name="partner_id" groups="base.group_user" string="Customer"/>
-                    <field name="date_invoice"/>
-                    <field name="number"/>
-                    <field name="commercial_partner_id" invisible="1"/>
-                    <field name="reference" invisible="1"/>
-                    <field name="name" invisible="1"/>
-                    <field name="journal_id" invisible="1"/>
-                    <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
-                    <field name="user_id"/>
-                    <field name="date_due"/>
-                    <field name="origin"/>
-                    <field name="amount_total_signed" string="Total" sum="Total"/>
-                    <field name="residual_signed" string="Amount Due" sum="Amount Due"/>
-                    <field name="currency_id" invisible="1"/>
-                    <field name="company_currency_id" invisible="1"/>
-                    <field name="state"/>
-                    <field name="type" invisible="context.get('type',True)"/>
-                </tree>
+              <field name="amount_total_signed" position="after">
+                  <field name="customer_curr_total"/>
+              </field>
           </field>
+
       </record>
 
       <!--record id="air_freight_bill_action" model="ir.actions.act_window">

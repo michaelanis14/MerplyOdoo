@@ -62,11 +62,11 @@ class HAWB_Model(models.Model):
     h_declared_carriage = fields.Selection(related='mawb_IDs.declared_carriage',
                        string='Declared Carriage', store=True, readonly=True)
     h_carriage_value = fields.Float(related='mawb_IDs.carriage_value',
-                       string='Declared Value', store=True, readonly=True,digits=(6, 2))
+                       string='Declared Value', store=True, readonly=True)
     h_declared_customs = fields.Selection(related='mawb_IDs.declared_customs',
                        string='Customs Carriage', store=True, readonly=True)
     h_customs_value = fields.Float(related='mawb_IDs.carriage_value',
-                       string='Customs Value', store=True, readonly=True,digits=(6, 2))
+                       string='Customs Value', store=True, readonly=True)
 
     h_account_insurance = fields.Selection(related='mawb_IDs.account_insurance',
                        string='Amount of Insurance', store=True, readonly=True)
@@ -84,26 +84,26 @@ class HAWB_Model(models.Model):
                        string='SCI', store=True, readonly=True)
 
 # ========= charges Sammary ============================================================================================
-    h_currency_rate = fields.Float('Currency Convertion Rates',digits=(6, 2))
-    h_cc_charges_in_dest_currency = fields.Float('Charges in Dest Currency',digits=(6, 2))
-    h_charges_at_dest = fields.Float('Charges at Destination',digits=(6, 2))
+    h_currency_rate = fields.Float('Currency Convertion Rates')
+    h_cc_charges_in_dest_currency = fields.Float('Charges in Dest Currency')
+    h_charges_at_dest = fields.Float('Charges at Destination')
     h_other_charges = fields.Text('Other Charges')
-    h_total_collect_charges = fields.Float('Total Collect Charges',digits=(6, 2))
+    h_total_collect_charges = fields.Float('Total Collect Charges')
 
 # ========= charges in Destination currency ============================================================================
-    h_weight_charge = fields.Float(compute='_cal_weight_charge', string="Weight Charge", store=True,digits=(6, 2))
-    h_valuation_charge = fields.Float('Valuation Charge',digits=(6, 2))
-    h_tax = fields.Float('Tax',digits=(6, 2))
-    h_Charges_due_agent = fields.Float('Total Other Charges Due Agent',digits=(6, 2))
-    h_Charges_due_carrier = fields.Float('Total Other Charges Due Carrier',digits=(6, 2))
-    h_total_charges = fields.Float(compute='_compute_total_charges',digits=(6, 2))
+    h_weight_charge = fields.Float(compute='_cal_weight_charge', string="Weight Charge", store=True)
+    h_valuation_charge = fields.Float('Valuation Charge')
+    h_tax = fields.Float('Tax')
+    h_Charges_due_agent = fields.Float('Total Other Charges Due Agent')
+    h_Charges_due_carrier = fields.Float('Total Other Charges Due Carrier')
+    h_total_charges = fields.Float(compute='_compute_total_charges')
 
     # ========= calcs ============================================================================
-    total_gross = fields.Float(compute='_compute_gross', string="gross", digits=(6, 2))
-    total_chargable = fields.Float(compute='_compute_chargable', string="chargable", digits=(6, 2))
+    total_gross = fields.Float(compute='_compute_gross', string="gross")
+    total_chargable = fields.Float(compute='_compute_chargable', string="chargable")
 
-    h_weight = fields.Float(compute='_compare_weights', string="weight",digits=(6, 2))
-    h_no_of_pieces = fields.Integer(compute='_compute_no_of_pieces', string="No of Pieces", digits=(6, 2))
+    h_weight = fields.Float(compute='_compare_weights', string="weight")
+    h_no_of_pieces = fields.Integer(compute='_compute_no_of_pieces', string="No of Pieces")
 
 
 # ========= Functions ==================================================================================================

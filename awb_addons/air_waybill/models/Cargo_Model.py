@@ -11,12 +11,12 @@ class Cargo_Model(models.Model):
     cargoH_IDs = fields.Many2one('hawb.model')
 
     no_of_pieces = fields.Integer('No. of Pieces')
-    gross_weight = fields.Float('Gross Weight',digits=(6, 2))
+    gross_weight = fields.Float('Gross Weight')
     class_rate = fields.Selection([('kg', 'Kg'),('q', 'Q')],default='kg')
     commodity_item_no = fields.Integer('Commodity Item No')
-    Chargeable_Wight = fields.Float(compute='_compute_chargableW', string="Chargeable Weight",digits=(6, 2))
-    rate_charge = fields.Float('Rate Charge',digits=(6, 2))
-    total = fields.Float(compute='_compute_total', string="Total",digits=(6, 2))
+    Chargeable_Wight = fields.Float(compute='_compute_chargableW', string="Chargeable Weight")
+    rate_charge = fields.Float('Rate Charge')
+    total = fields.Float(compute='_compute_total', string="Total")
 
     description = fields.Text('Goods Description')
 
@@ -24,7 +24,7 @@ class Cargo_Model(models.Model):
     w = fields.Integer('width')
     h = fields.Integer('Hight')
 
-    shipment_vol = fields.Float(compute='_compute_vol', string="VOL",digits=(6, 2))
+    shipment_vol = fields.Float(compute='_compute_vol', string="VOL")
 
 
     # ========= Functions ==================================================page2=============================================

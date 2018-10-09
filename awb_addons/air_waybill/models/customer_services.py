@@ -34,10 +34,8 @@ class customer_services(models.Model):
                              ], default='f_ch', index=True, required=True, translate=True)
 
     hawb_cs_ID = fields.Many2one("hawb.model",string='HAWB NO')
-    #customer_currency = fields.Many2one(related='afb_id.foreign_cur', store=True, readonly=True)
 
     custom_service_cost = fields.Float(string='Customer Service Cost', required=True)
-    #total_cost = fields.Monetary(string='Total cost', store=True, readonly=True, currency_field='customer_currency',compute='_compute_total_cost')
 
 
 

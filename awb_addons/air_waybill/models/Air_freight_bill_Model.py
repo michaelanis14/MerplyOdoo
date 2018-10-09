@@ -31,14 +31,14 @@ class Air_freight_bill(models.Model):
 
     afb_weight = fields.Float(related='hawb_afb_ID.h_weight',
                        string='Weight', store=True, readonly=True)
-    afb_price = fields.Float('Price', digits=(6, 2))
+    afb_price = fields.Float('Price')
 
-    freight_charge= fields.Float(compute='_compute_freight_charge', string="Freight Charge", store=True, digits=(6, 2))
+    freight_charge= fields.Float(compute='_compute_freight_charge', string="Freight Charge", store=True)
 
     customer_curr = fields.Many2one(related='hawb_afb_ID.h_currency_ID', string='Customer Currency',
                                   store=True, readonly=True)
 
-    customer_curr_total =fields.Monetary(string='Total',store=True, readonly=True,
+    customer_curr_total =fields.Monetary(string='Customer Services Total',store=True, readonly=True,
                                          currency_field='customer_curr', compute='_compute_customer_total')
 
 

@@ -29,7 +29,7 @@
         'views/mawb.xml',
         'views/hawb.xml',
         'views/air_freight_bill.xml',
-        'views/customer_services.xml',
+        'views/Edit_product_view.xml',
 
 
     ],
