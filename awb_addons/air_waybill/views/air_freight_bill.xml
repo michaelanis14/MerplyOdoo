@@ -8,15 +8,25 @@
           <field name="inherit_id" ref="account.invoice_form"/>
           <field name="view_type">tree, form</field>
           <field name="arch" type="xml">
-              <field name="partner_id" position="after">
-                  <field name="account_to"/>
+
+              <field name="partner_id" position="before">
                   <field name="hawb_afb_ID"/>
+              </field>
+
+              <field name="partner_id" position="after">
                   <field name="afb_no_of_pieces"/>
               </field>
-              <field name="user_id" position="after">
+
+              <field name="date_invoice" position="before">
                   <field name="mawb_a"/>
+              </field>
+
+               <field name="date_due" position="after">
                   <field name="afb_weight"/>
               </field>
+
+
+
 
               <xpath expr="//page[@name='invoice_line']//field[@name='product_id']" position="attributes">
                 <attribute name="string">Service</attribute>
@@ -25,6 +35,36 @@
                <xpath expr="//page[@name='invoice_line']//field[@name='quantity']" position="attributes">
                 <attribute name="invisible">1</attribute>
               </xpath>
+
+                <xpath expr="//page[@name='other_info']" position="before">
+
+                     <page name="customer_services" string="Amounts in foreign currency ">
+                         <group>
+                             <group>
+                                 <field name="customer_curr"/>
+                                 <field name="afb_price"/>
+                                 <field name="freight_charge"/>
+
+                             </group>
+                         </group>
+
+                             <group>
+                                 <field name="customer_services_id"  widget="one2many_list">
+                                     <tree string="customer Services" editable="bottom">
+                                         <field name="custom_service_name"/>
+                                         <field name="custom_service_cost"/>
+                                     </tree>
+                                 </field>
+
+
+                                 <group class="oe_subtotal_footer oe_right">
+
+                                    <field name="customer_curr_total" class="oe_subtotal_footer_separator"/>
+                                 </group>
+                             </group>
+
+                     </page>
+                </xpath>
 
           </field>
 
@@ -58,13 +98,11 @@
           </field>
       </record>
 
-      <record id="air_freight_bill_action" model="ir.actions.act_window">
+      <!--record id="air_freight_bill_action" model="ir.actions.act_window">
             <field name="name"> Air Freight Bill </field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">account.invoice</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_type">form</field>
-            <field name="view_id" ref="account.invoice_form"/>
+
             <field name="help" type="html">
 
                 <p class="oe_view_nocontent_create">
@@ -80,7 +118,7 @@
       <menuitem name="Air Freight Bill"
               id="air_freight_bill_menulist"
               parent="mawb_menuitem"
-              action="air_freight_bill_action"/>
+              action="air_freight_bill_action"/-->
 
 
   </data>

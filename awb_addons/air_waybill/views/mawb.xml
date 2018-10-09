@@ -267,18 +267,19 @@
                     </field>
                 </record>
 
-    <menuitem name="Air Fright"
-              id="mawb_menu_root" />
+
 
 
        <menuitem name="Air Fright"
                  id="mawb_menuitem"
-                 parent="mawb_menu_root"/>
+                 parent="account.menu_finance"
+       sequence="1"/>
 
       <menuitem name="Master AWB"
                  id="mawb_menulist"
                  parent="mawb_menuitem"
-                 action="mawb_menu_action"/>
+                 action="mawb_menu_action"
+      sequence="1"/>
 
   </data>
 </odoo>

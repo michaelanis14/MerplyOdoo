@@ -10,7 +10,7 @@ class MAWB_Model(models.Model):
 # ========= IDs ========================================================================================================
     cargos_ID = fields.One2many('cargo.details', 'cargoM_IDs')
     hawb_ID  = fields.One2many('hawb.model', 'mawb_IDs')
-    afb_ID  = fields.One2many('account.invoice', 'mawb_afb_ID')
+    #afb_ID  = fields.One2many('account.invoice', 'mawb_afb_ID')
 
 
 

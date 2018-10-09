@@ -259,14 +259,13 @@
           </field>
       </record>
 
-    <menuitem name="House AWB"
-              id="hawb_menuitem"
-              parent="mawb_menu_root"/>
+
 
     <menuitem name="House AWB"
               id="hawb_menulist"
               parent="mawb_menuitem"
-              action="hawb_menu_action"/>
+              action="hawb_menu_action"
+    sequence="2"/>
 
 
 
