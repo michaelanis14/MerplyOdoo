@@ -30,6 +30,7 @@
         'views/hawb.xml',
         'views/air_freight_bill.xml',
         'views/Edit_product_view.xml',
+        'views/air_freight_bill_foreign_curr.xml',
 
 
     ],

@@ -155,12 +155,12 @@
                                           <field name="total_charges" string="Total Prepaid"/>
                                        </group>
 
-                                      <group></group>
+                                      <group/>
 
                                   </group>
 
                                    <group attrs="{'invisible': [('wt','=', 'ppd')]}">
-                                       <group></group>
+                                       <group/>
                                        <group>
                                           <div>
                                                 <label string="Collected"/><br/>

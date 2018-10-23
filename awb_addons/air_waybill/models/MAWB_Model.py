@@ -25,7 +25,7 @@ class MAWB_Model(models.Model):
 
     accounting_information = fields.Text('Accounting Information')
     aiata_code = fields.Char('AITA Code', requiered=True)
-    account_no = fields.Char(elated='mawb_ID.aiata_code',
+    account_no = fields.Char(related='aiata_code',
                        string='Account No', store=True, readonly=True)
 
 
