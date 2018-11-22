@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_freight_module_freight_module,freight_module.freight_module,model_freight_module_freight_module,,1,0,0,0

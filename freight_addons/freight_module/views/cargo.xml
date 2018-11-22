@@ -1,0 +1,123 @@
+<odoo>
+  <data>
+
+     <!--  MAWB -->
+      <record id="HAWB_form" model="ir.ui.view">
+          <field name="name">Cargo Form</field>
+          <field name="model">cargo.details</field>
+          <field name="arch" type="xml">
+              <form>
+                  <sheet>
+                      <div>
+                          <label string="Cargo Number:"/><br/>
+                          <field name="cargo_id"/><br/>
+                          <label string="HAWB Number Of Cargo:"/><br/>
+                          <field name="cargoH_IDs" widget="many2one"/>
+                      </div>
+
+
+                      <group>
+                                          <group>
+                                              <field name="no_of_pieces"/>
+                                              <field name="gross_weight"/>
+                                              <field name="class_rate"/>
+                                              <field name="commodity_item_no"/>
+                                              <field name="rate_charge"/>
+
+
+                                          </group>
+                                          <group>
+
+                                              <field name="l"/>
+                                              <field name="w"/>
+                                              <field name="h"/>
+                                              <field name="description"/>
+                                          </group>
+                                      </group>
+
+                       <group>
+                                          <field name="shipment_vol"/>
+                                          <field name="Chargeable_Wight"/>
+                                          <field name="total"/>
+                                      </group>
+
+                  </sheet>
+
+              </form>
+          </field>
+      </record>
+
+      <record id="HAWB_tree" model="ir.ui.view">
+          <field name="name">Cargo tree</field>
+          <field name="model">cargo.details</field>
+          <field name="arch" type="xml">
+              <tree>
+                  <field name="no_of_pieces"/>
+                  <field name="gross_weight"/>
+                  <field name="commodity_item_no"/>
+                  <field name="Chargeable_Wight"/>
+                  <field name="class_rate"/>
+                  <field name="total"/>
+              </tree>
+          </field>
+      </record>
+
+      <!--record id="HAWB_kanban" model="ir.ui.view">
+          <field name="name">HAWB kanban</field>
+          <field name="model">hawb.model</field>
+          <field name="arch" type="xml">
+              <kanban>
+                  <field name="hawb_no"/>
+
+                  <templates>
+                      <t t-name="kanban-box">
+                          <div class="oe_kanban_global_click">
+                              <div class="o_kanban_image">
+                                  <img t-att-src="kanban_image('product.template', 'image_small')"/>
+                              </div>
+                              <div class="oe_kanban_details">
+                                  <strong>
+                                      <field name="hawb_no"/>
+                                  </strong>
+                                  <div name="tags"/>
+
+                              </div>
+                          </div>
+                      </t>
+                  </templates>
+              </kanban>
+          </field>
+      </record-->
+
+         <!--  HAWB Menu -->
+
+    <record id="cargo_menu_action" model="ir.actions.act_window">
+          <field name="name"> Cargos </field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">cargo.details</field>
+          <field name="view_mode">tree,form</field>
+          <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                  Click to add New Cargo
+              </p>
+          </field>
+      </record>
+
+
+
+      <menuitem name="Configurations"
+                id="confgs_menulist"
+                parent="freight_menuroot"/>
+
+     <menuitem name="Cargos"
+                 id="cargos_menuitem"
+                 parent="confgs_menulist"
+                 action="cargo_menu_action"
+                 sequence="1"/>
+
+
+
+
+
+  </data>
+</odoo>
