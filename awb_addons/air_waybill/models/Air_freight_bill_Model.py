@@ -41,11 +41,15 @@ class Air_freight_bill(models.Model):
     customer_curr_total =fields.Monetary(string='Customer Services Total',store=True, readonly=True,
                                          currency_field='customer_curr', compute='_compute_customer_total')
 
+    #currency_id = fields.Many2one('res.currency', string='Currency',
+    #                              required=True, readonly=True,
+     #                             compute='_select_currency_type', track_visibility='always')
+
+    #invoice_selector= fields.Selection([('egp_invoice', 'EGP Invoice'),
+     #                        ('foreign_invoice', 'Foreign Invoice')], default='egp_invoice', index=True, required=True)
 
 
-
-
-#========= Functions ==================================================page2============================================
+    #========= Functions ==================================================page2============================================
     @api.one
     @api.depends('afb_weight','afb_price')
     def _compute_freight_charge(self):
@@ -87,7 +91,34 @@ class Air_freight_bill(models.Model):
 
 
 
+class Air_invoice_line(models.Model):
+    _inherit =  "account.invoice.line"
 
+    name = fields.Selection([('f_ch', 'FOB Charges (EX-Works)'),
+                             ('fuel', 'FUEL'),
+                             ('sec', 'SEC'),
+                             ('fuel_sec', 'FUEL & SEC'),
+                             ('courier', 'COURIR'),
+                             ('eur', 'EUR 1'),
+                             ('eur', 'EUR 1'),
+                             ('x_ray', 'X-RAY'),
+                             ('dgr', 'DGR'),
+                             ('awb', 'AWB'),
+                             ('customs', 'CUSTOMS'),
+                             ('goods_cost', 'COST OF GOODS'),
+                             ('pick', 'PICK UP'),
+                             ('packing', 'PACKING'),
+                             ('packaging', 'PACKAGING'),
+                             ('sv_charges', 'S.V CHARGES'),
+                             ('handling', 'HANDLING'),
+                             ('special', 'SPECIAL TRUCK'),
+                             ('inspection', 'INSPECTION'),
+                             ('fumigation', 'FUMIGATION'),
+                             ('leg_cost', 'COST OF LEGALIZATION'),
+                             ('clearance', 'CLEARANCE'),
+                             ('origin', 'CERTIFICATE OF ORIGIN'),
+                             ('collection', 'COLLECTION'),
+                             ], default='f_ch', index=True, required=True, translate=True,string=' Service ')
 
 
 
